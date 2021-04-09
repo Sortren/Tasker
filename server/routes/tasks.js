@@ -1,5 +1,5 @@
 import express from 'express';
-import Users from '../models/Users.js';
+import Users from '../models/User.js';
 const router = express.Router();
 
 //returns all tasks

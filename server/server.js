@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import tasksRoute from './routes/tasks';
+import tasksRoute from './routes/tasks.js';
 import loginRoute from './routes/login.js';
 import cors from 'cors';
 import './controllers/DatabaseConnection.js' //connection to the mongodb is automatically done with import (function invokes) 
