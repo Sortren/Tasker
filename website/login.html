@@ -4,27 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/login.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
     <title>Log in</title>
 </head>
 <body>
-    <label for = "username"><h2>Input your username</h2></label>
-        <input
-        id="username"
-        type="text"
-        />
 
-    <label for = "password"><h2>Input your password</h2></label>
-        <input
-        id="password"
-        type="password"
-        /><br><br> 
+    <main>
+
+        <div class = "login-box">
+            <h1>Log in</h1>
+            <div class = "form">
+                <input
+                id="username"
+                placeholder="username"
+                type="text"
+                class="input"
+                />
+                
+                <input
+                id="password"
+                placeholder="password"
+                type="password"
+                class="input"
+                />
+                
+                <button onclick = "submit()" type = "button">Submit</button>
+            </div>
+            
+            <div>
+                <p id = "information">
+                   
+                </p>
+            </div>   
+        </div>
+
+        <div class = "register">
+            <a href = "">Register here</a>
+        </div>
+
+    </main>
         
-    <button onclick = "submit()" type = "button">Submit</button>    
-    
-    <p id = "information">
-       
-    </p>
-
     <script src = "./scripts/login.js"></script> 
 </body>
 </html>

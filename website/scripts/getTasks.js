@@ -37,7 +37,7 @@ onload = async () => {
         button.addEventListener('click', () => removeTask(item, index));
 
         item.innerText = element;
-        item.appendChild(button);
+        item.appendChild(button); 
 
         list.appendChild(item);
     })
