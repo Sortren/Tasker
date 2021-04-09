@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>TO-DO List</title>
+</head>
+
+<body>
+    <main>
+        <h1><b> ==TO DO List== </b></h1>
+    
+        <label for = "taskName"><h2>Input a task</h2></label>
+        <input
+        id="taskName"
+        type="text"
+        />
+        
+        <!-- send() -> function prepared in postTasks.js -->
+        <button onclick = "send()" type = "button">Add</button>
+        <a href = "tasks.html">/Check added tasks/</a>
+    </main>
+
+    <script src = "./scripts/postTask.js"></script> 
+</body>
+</html>
