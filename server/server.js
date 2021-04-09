@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import './controllers/DatabaseConnection.js' //connection to the mongodb is automatically done with import (function invokes) 
+
 
 const app = express();
 const PORT = 2000;
