@@ -1,5 +1,6 @@
 let send = () => {
     let taskName = document.getElementById('taskName');
+    let information = document.getElementById('information')
     
     //getting an _id that has been passed with the user logging
     let _id = localStorage.getItem('_id');
@@ -17,7 +18,11 @@ let send = () => {
         },
         body: JSON.stringify(data)
     })
-
+    .then(res => res.json())
+    .then(data => {
+        information.innerText = data.message;
+    });
+    
     //input field reset after invoking a function send()
     taskName.value = '';
 }

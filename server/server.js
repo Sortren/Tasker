@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import tasksRoute from './routes/tasks.js';
 import loginRoute from './routes/login.js';
+import registerRoute from './routes/register.js';
 import cors from 'cors';
 import './controllers/DatabaseConnection.js' //connection to the mongodb is automatically done with import (function invokes) 
 
@@ -14,7 +15,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/login', loginRoute);
+app.use('/register', registerRoute);
 app.use('/tasks', tasksRoute);
+
 
 
 app.listen(PORT, () => console.log(`Server is running on port: http://localhost:${PORT}`));
