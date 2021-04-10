@@ -32,10 +32,10 @@ router.patch('/:_id', async (req, res) => {
 router.delete('/:_id', async (req, res) => {
     try{
         const found = await Users.findOne({_id: req.params._id}); //returns User object with matched params
-        
         found.tasks.splice(req.body.index, 1); //delete specific tasks from an array of tasks in User object
+        
         await found.save();
-
+        
         res.json({message: 'task has been deleted'});
     } catch (err) {
         res.json({message: err});
