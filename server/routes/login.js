@@ -1,5 +1,6 @@
 import express from 'express';
 import Users from '../models/User.js';
+import bcrypt from 'bcryptjs';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -8,11 +9,13 @@ router.post('/', async (req, res) => {
     if (!foundUser){
         res.status(404).json({message: "account not found"});
     } else {
-        if (foundUser.password === req.body.password){
-            res.status(200).json(foundUser); //returns User object from mongodb
-        } else {
-            res.status(401).json({message: "wrong password"});
+        const validPassword = await bcrypt.compare(req.body.password, foundUser.password);
+
+        if (!validPassword){
+            return res.status(401).json({message: "invalid password"});
         }
+
+        res.status(200).json(foundUser);
     }
 });
 
