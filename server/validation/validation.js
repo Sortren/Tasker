@@ -1,6 +1,5 @@
 import Joi from '@hapi/joi';
 
-//Register validation
 export const registerValidation = (data) => {
     const validationSchema = Joi.object({
         username: Joi.string()

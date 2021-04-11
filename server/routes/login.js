@@ -15,7 +15,10 @@ router.post('/', async (req, res) => {
             return res.status(401).json({message: "invalid password"});
         }
 
-        res.status(200).json(foundUser);
+        res.status(200).json({
+            _id: foundUser._id,
+            username: foundUser.username
+        });
     }
 });
 

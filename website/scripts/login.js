@@ -24,7 +24,6 @@ let submit = async () => {
         if (response.status === 200){
             //implements local storage for logging the user
             localStorage.setItem('username', body.username);//key -> username | value ->  body.username
-            localStorage.setItem('password', body.password);
             localStorage.setItem('_id', body._id);
             location.href = './index.html'; //redirect to adding tasks page
 
