@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
 
         }, process.env.TOKEN_SECRET);
 
-        res.header('jwt', token);
+        res.header('jwt', token).json({message: "token has been assigned"});
     }
 });
 
