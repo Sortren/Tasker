@@ -16,20 +16,20 @@ let submit = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    });//if status === 200 => response from the server will be User object
+    });
     
     const logging = async () => {
         let body = await response; //body of returned user
-        let message = await body.json();
+        let data = await body.json();
 
         if (response.status === 200){
-            //implements local storage for logging the user
-            localStorage.setItem('jwt', body.headers.get('jwt'));//key -> username | value ->  body.username
-            location.href = './index.html'; //redirect to adding tasks page
+            localStorage.setItem('jwt', body.headers.get('jwt'));
+            localStorage.setItem('username', data.username);
+            location.href = './index.html';
         } else if (response.status === 401){
-            information.innerText = message;
+            information.innerText = data.message;
         } else if (response.status === 404){
-            information.innerText = message;
+            information.innerText = data.message;
         }
     }
 

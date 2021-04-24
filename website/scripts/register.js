@@ -30,6 +30,7 @@ let submit = async () => {
         } else {
             information.innerText = body.message;
             
+            //input reset after successful registration
             email.value = '';
             username.value = '';
             password.value = '';
@@ -37,5 +38,4 @@ let submit = async () => {
     }
 
     register();
-
 }

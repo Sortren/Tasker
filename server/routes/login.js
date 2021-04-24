@@ -18,11 +18,17 @@ router.post('/', async (req, res) => {
 
         const token = jwt.sign({
             _id: foundUser._id,
-            username: foundUser.username
-
         }, process.env.TOKEN_SECRET);
 
-        res.set({'jwt': token, "Access-Control-Expose-Headers": "jwt"}).json({message: "token has been assigned"});
+
+        //setting up the header and json
+        res.set({
+            'jwt': token, 
+            "Access-Control-Expose-Headers": "jwt"
+        }).json({
+            username: foundUser.username, 
+            message: "token has been assigned"
+        });
     }
 });
 

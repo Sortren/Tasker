@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', verify, async (req, res) => {
     try {
         const tasks = await Users.findOne({_id: req.user._id}); //returns User object from momngodb
-        res.json(tasks.tasks); //response only with user's tasks
+        res.json(tasks.tasks);
     } catch (err) {
         res.json({message: err});
     }

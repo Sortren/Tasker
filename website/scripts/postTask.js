@@ -2,19 +2,19 @@ let send = () => {
     let taskName = document.getElementById('taskName');
     let information = document.getElementById('information')
     
-    //getting an _id that has been passed with the user logging
-    let _id = localStorage.getItem('_id');
+    let token = localStorage.getItem('jwt');
 
     let data = {
         tasks: taskName.value //value from the input
     }
 
-    let url = `http://localhost:2000/tasks/${_id}`;
+    let url = 'http://localhost:2000/tasks';
 
     fetch(url, {
         method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'jwt': token
         },
         body: JSON.stringify(data)
     })

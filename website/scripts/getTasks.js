@@ -1,10 +1,8 @@
 let list = document.querySelector('ol');
 let taskStatus = document.getElementById('task-status');
 
-//getting an _id that has been passed with the user logging
-//to specify from which user pull the tasks data
-let _id = localStorage.getItem('_id');
-let url = `http://localhost:2000/tasks/${_id}`;
+let token = localStorage.getItem('jwt');
+let url = 'http://localhost:2000/tasks/';
 
 let removeTask = (item, index) => {
     let data = {
@@ -14,7 +12,8 @@ let removeTask = (item, index) => {
     fetch(url, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'jwt': token
         },
         body: JSON.stringify(data)
     })
@@ -30,7 +29,8 @@ onload = async () => {
     let apiData = await fetch(url, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'jwt': token
         },
     }).then(res => res.json()); //response from server is User's tasks array
 
