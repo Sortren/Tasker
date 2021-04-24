@@ -9,7 +9,10 @@ router.post('/', async (req, res) => {
 
     //Data Validation
     const { error } = registerValidation(req.body);
-    if (error) return res.status(400).send(error.details[0].message); 
+    
+    if (error) return res.status(400).send({
+            message: error.details[0].message
+    }); 
 
     //Check if the user is already in database
     const emailExist = await Users.findOne({email: req.body.email});
@@ -32,7 +35,7 @@ router.post('/', async (req, res) => {
 
     try{
         await user.save();
-        res.send({message: "User has been created! To authorize your account, check your e-mail box"});
+        res.status(200).send({message: "User has been created! To authorize your account, check your e-mail box"});
     } catch (err){
         res.status(400).send(err); //status 400 -> bad request 
     }

@@ -5,32 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/login.css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Log in</title>
 </head>
+
 <body>
 
     <main>
-
         <div class = "login-box">
-            <h1>Tasker</h1>
+            
+            <div class = "header">
+                <span id = "welcome-back">Welcome back in Tasker</span>
+                <span id = "login-header">Login to your account</span>
+            </div>
+                
             <div class = "form">
-                <input
-                id="username"
-                placeholder="username"
-                type="text"
-                class="input"
-                />
+                <div class = "inputs">
+                    <div class = "input-email">
+                        <span>Email</span>
+                        <input
+                        id="username"
+                        type="text"
+                        class="input"
+                        />
+                    </div>
+
+                    <div class = "input-password">
+                        <span>Password</span>
+                        <input
+                        id="password"
+                        type="password"
+                        class="input"
+                        />
+                    </div>
+            
+                </div>
                 
-                <input
-                id="password"
-                placeholder="password"
-                type="password"
-                class="input"
-                />
+                <div class = "remember-forgot">
+                    <div class = "checkbox-remember">
+                        <input 
+                        id="remember"
+                        type="checkbox"
+                        class="checkbox">Remember me</input>
+                    </div>
+
+                    <a href = ""><span>Forgot password?</span></a>
+                </div>
+
+                <div class = "buttons">
+                    <button onclick = "submit()" type = "button" id = "login">Login now</button>
+                    <button onclick = "" type = "button" id = "google"><img src = "./icons/google_icon-icons.com_62736.png" width = "20" height = "20">Or sign-in with google</button>    
+                </div>
                 
-                <button onclick = "submit()" type = "button">Submit</button>
+                <div class = "register-now">
+                    <p>Don't have an account? <a href = "register.html"> Register now</a></p>
+                </div>
+            
             </div>
             
             <div>
@@ -38,10 +69,6 @@
                    
                 </p>
             </div>   
-        </div>
-
-        <div class = "register">
-            <a href = "register.html">Register here</a>
         </div>
 
     </main>
