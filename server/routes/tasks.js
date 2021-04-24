@@ -1,6 +1,15 @@
 import express from 'express';
 import Users from '../models/User.js';
+import { verify } from '../private_routes/verifyToken.js';
 const router = express.Router();
+
+
+router.get('/', verify, async (req, res) => {
+    res.json({posts: {title: "test test", description: "test test test"}});
+
+})
+
+
 
 //returns all tasks
 router.get('/:_id', async (req, res) => {
