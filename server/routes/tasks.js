@@ -4,28 +4,22 @@ import { verify } from '../private_routes/verifyToken.js';
 const router = express.Router();
 
 
-router.get('/', verify, async (req, res) => {
-    res.json({posts: {title: "test test", description: "test test test"}});
-
-})
-
-
-
 //returns all tasks
-router.get('/:_id', async (req, res) => {
+router.get('/', verify, async (req, res) => {
     try {
-        const tasks = await Users.findOne({_id: req.params._id}); //returns User object from momngodb
+        const tasks = await Users.findOne({_id: req.user._id}); //returns User object from momngodb
         res.json(tasks.tasks); //response only with user's tasks
     } catch (err) {
         res.json({message: err});
     }
 });
 
+
 //adding task for specific user with an _id
-router.patch('/:_id', async (req, res) => {
+router.patch('/', verify, async (req, res) => {
     try{
         await Users.updateOne(
-            {_id: req.params._id},
+            {_id: req.user._id},
             {$push: {
                 tasks: req.body.tasks
             }}
@@ -38,9 +32,9 @@ router.patch('/:_id', async (req, res) => {
 
 
 //deleting specific task for specific user with an id
-router.delete('/:_id', async (req, res) => {
+router.delete('/', verify, async (req, res) => {
     try{
-        const found = await Users.findOne({_id: req.params._id}); //returns User object with matched params
+        const found = await Users.findOne({_id: req.user._id}); //returns User object with matched params
         found.tasks.splice(req.body.index, 1); //delete specific tasks from an array of tasks in User object
         
         await found.save();

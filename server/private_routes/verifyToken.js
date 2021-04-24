@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 export function verify(req, res, next){
-    const token = req.header('jwt-token');
+    const token = req.header('jwt');
     if(!token) return res.status(401).send('Access denied');
 
     try{

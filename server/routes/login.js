@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
 
         }, process.env.TOKEN_SECRET);
 
-        res.header('jwt-token', token);
+        res.header('jwt', token);
     }
 });
 
