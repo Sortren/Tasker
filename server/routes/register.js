@@ -2,6 +2,8 @@ import express from 'express';
 import Users from '../models/User.js';
 import { registerValidation } from '../validation/validation.js';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
+import { sendMail } from '../controllers/mailer.js';
 const router = express.Router();
 
 
@@ -26,13 +28,27 @@ router.post('/', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
+    const authToken = crypto.randomBytes(20).toString('hex');
 
+    //setting up the expires time to 24 hours from token generating
+    const authTokenExpires = Date.now() + 24 * 3600 * 1000;
+    
     const user = new Users({
         username: req.body.username,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        authToken: authToken,
+        authTokenExpires: authTokenExpires
     });
-
+    
+    const authLink = `http://localhost:2000/authorize/${authToken}`;
+    
+    sendMail({
+        to: req.body.email,
+        subject: 'Authorization',
+        html: `To authorize the account, click <a href="${authLink}"> here </a>`
+    })
+    
     try{
         await user.save();
         res.status(200).send({message: "User has been created! To authorize your account, check your e-mail box"});

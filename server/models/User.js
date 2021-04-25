@@ -25,7 +25,17 @@ const UserSchema = new mongoose.Schema({
     tasks: {
         type: Array,
         required: false
-    }
+    },
+
+    authorized: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
+
+    authToken: String,
+
+    authTokenExpires: Date
 })
 
 export default mongoose.model('Users', UserSchema);
