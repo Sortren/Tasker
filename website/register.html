@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/register.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
     <title>Register</title>
@@ -12,32 +12,72 @@
 <body>
 
     <main>
-
         <div class = "login-box">
-            <h1>Tasker</h1>
+            
+            <div class = "header">
+                <span id = "welcome-back">First time in Tasker?</span>
+                <span id = "login-header">Create your account</span>
+            </div>
+                
             <div class = "form">
-                <input
-                id="email"
-                placeholder="e-mail"
-                type="text"
-                class="input"
-                />
+                <div class = "inputs">
+                    <div class = "input-username">
+                        <span>Username</span>
+                        <input
+                        id="username"
+                        type="text"
+                        class="input"
+                        />
+                    </div>
 
-                <input
-                id="username"
-                placeholder="username"
-                type="text"
-                class="input"
-                />
+                    <div class = "input-email">
+                        <span>Email</span>
+                        <input
+                        id="email"
+                        type="text"
+                        class="input"
+                        />
+                    </div>
+
+                    <div class = "input-password">
+                        <span>Password</span>
+                        <input
+                        id="password"
+                        type="password"
+                        class="input"
+                        />
+                    </div>
+
+                    <div class = "input-confirm_password">
+                        <span>Confirm password</span>
+                        <input
+                        id="confirm-password"
+                        type="password"
+                        class="input"
+                        />
+                    </div>
+            
+                </div>
                 
-                <input
-                id="password"
-                placeholder="password"
-                type="password"
-                class="input"
-                />
+                <div class = "remember">
+                    <div class = "checkbox-remember">
+                        <input 
+                        id="remember"
+                        type="checkbox"
+                        class="checkbox">Remember me</input>
+                    </div>
+
+                </div>
+
+                <div class = "buttons">
+                    <button onclick = "submit()" type = "button" id = "login">Register now</button>
+                    <button onclick = "" type = "button" id = "google"><img src = "./icons/google_icon-icons.com_62736.png" width = "20" height = "20">Or sign-up with google</button>    
+                </div>
                 
-                <button onclick = "submit()" type = "button">Submit</button>
+                <div class = "login-now">
+                    <p>Do you have an account? <a href = "login.html"> Log in now</a></p>
+                </div>
+            
             </div>
             
             <div>
@@ -45,10 +85,6 @@
                    
                 </p>
             </div>   
-        </div>
-
-        <div class = "register">
-            <a href = "login.html">Log in instead</a>
         </div>
 
     </main>
