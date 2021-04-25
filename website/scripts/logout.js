@@ -5,4 +5,4 @@ let logout = async () => {
 
 let userInfo = document.getElementById('user-info');
 let username = localStorage.getItem('username');
-userInfo.innerText = `You are logged in as: ${username}`;
+userInfo.innerText = `${username}`;

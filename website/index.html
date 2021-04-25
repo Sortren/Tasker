@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Tasker</title>
 </head>
 
 <body>
     <main>
-        <div class = "login">
+        <!-- <div class = "login">
             <p id = "user-info">
 
             </p>
@@ -24,16 +26,40 @@
         <input
         id="taskName"
         type="text"
-        />
+        /> -->
         
         <!-- send() -> function prepared in postTasks.js -->
-        <button onclick = "send()" type = "button">Add</button>
-        <a href = "tasks.html">/Check added tasks/</a>
+        <!-- <button onclick = "send()" type = "button">Add</button>
+        <a href = "tasks.html">/Check added tasks/</a> -->
 
-        <div class = "information">
+        <!-- <div class = "information">
               <p id = "information">
                   
               </p>
+        </div> -->
+        <div class = "app">
+            <div class = "top-bar-container">
+                <div class = "top-bar-data">
+                    <span class = "menu">Tasker</span>
+                    <span class = "menu">DASHBOARD</span>
+                    <span class = "menu">TASKS LIST</span>
+                    <p id = "user-info"> </p>
+                </div>
+            </div>
+
+            <div class = "row-bars">
+                <div class ="left-bar-container">
+                    <div class = "left-bar-data">
+                        <span class = "header"> Your tasks list</span>
+                    </div>
+                </div>
+                
+                <div class = "right-bar-container">
+                    <div class = "right-bar-data">
+        
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
