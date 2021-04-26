@@ -1,9 +1,9 @@
+import { registerValidation } from '../validation/validation.js';
+import { sendMail } from '../controllers/mailer.js';
 import express from 'express';
 import Users from '../models/User.js';
-import { registerValidation } from '../validation/validation.js';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
-import { sendMail } from '../controllers/mailer.js';
 const router = express.Router();
 
 
