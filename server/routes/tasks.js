@@ -7,8 +7,14 @@ const router = express.Router();
 //returns all tasks
 router.get('/', verify, async (req, res) => {
     try {
-        const tasks = await Users.findOne({_id: req.user._id}); //returns User object from momngodb
-        res.json(tasks.tasks);
+        const user = await Users.findOne({_id: req.user._id}); //returns User object from momngodb
+
+        if (user.authorized){
+            res.json(user.tasks);
+        } else {
+            res.json({message: 'Please authorize your account via link in your email box'});
+        }
+
     } catch (err) {
         res.json({message: err});
     }
@@ -18,13 +24,18 @@ router.get('/', verify, async (req, res) => {
 //adding task for specific user with an _id
 router.patch('/', verify, async (req, res) => {
     try{
-        await Users.updateOne(
-            {_id: req.user._id},
-            {$push: {
-                tasks: req.body.tasks
-            }}
-        );
-        res.json({message: "task has been added"});
+        const user = await Users.findOne({_id: req.user._id});
+
+        if (user.authorized){
+            await Users.updateOne(
+                {_id: req.user._id},
+                {$push: {
+                    tasks: req.body.tasks
+                }})
+                res.json({message: "task has been added"});
+            } else {
+            res.json({message: 'Please authorize your account via link in your email box'});
+        }
     } catch (err){
         res.json({message: err});
     }
@@ -34,12 +45,15 @@ router.patch('/', verify, async (req, res) => {
 //deleting specific task for specific user with an id
 router.delete('/', verify, async (req, res) => {
     try{
-        const found = await Users.findOne({_id: req.user._id}); //returns User object with matched params
-        found.tasks.splice(req.body.index, 1); //delete specific tasks from an array of tasks in User object
+        const user = await Users.findOne({_id: req.user._id}); //returns User object with matched params
         
-        await found.save();
-        
-        res.json({message: 'task has been deleted'});
+        if (user.authorized){
+            user.tasks.splice(req.body.index, 1); //delete specific task from an array of tasks in User object
+            await user.save();
+            res.json({message: 'task has been deleted'});
+        } else {
+            res.json({message: 'Please authorize your account via link in your email box'});
+        }
     } catch (err) {
         res.json({message: err});
     }
