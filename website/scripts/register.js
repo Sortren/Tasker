@@ -3,6 +3,7 @@ let submit = async () => {
     let username = document.getElementById('username');
     let password = document.getElementById('password');
     let information = document.getElementById('information');
+    let confirm_password = document.getElementById('confirm-password');
 
 
     let data = {
@@ -34,6 +35,7 @@ let submit = async () => {
             email.value = '';
             username.value = '';
             password.value = '';
+            confirm_password.value = '';
         }
     }
 

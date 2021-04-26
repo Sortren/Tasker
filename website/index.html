@@ -43,7 +43,9 @@
                     <span class = "menu">Tasker</span>
                     <span class = "menu">DASHBOARD</span>
                     <span class = "menu">TASKS LIST</span>
+                    <button onclick = "logout()" type = "button">Log out</button>
                     <p id = "user-info"> </p>
+                    
                 </div>
             </div>
 
@@ -51,19 +53,30 @@
                 <div class ="left-bar-container">
                     <div class = "left-bar-data">
                         <span class = "header"> Your tasks list</span>
+                        <ol class = "list">
+                            <!-- data fetched from 'GET' -->
+                        </ol>
+                        
+                        <label for = "taskName">Add new task</label>
+                        <input
+                        id="taskName"
+                        type="text"
+                        />
+
+                        <button onclick = "send()" type = "button">+</button>
                     </div>
                 </div>
                 
                 <div class = "right-bar-container">
                     <div class = "right-bar-data">
-        
+                        
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <script src = "./scripts/postTask.js"></script> 
+    <script src = "./scripts/tasks.js"></script>
     <script src = "./scripts/logout.js"></script> 
 </body>
 </html>

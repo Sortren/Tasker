@@ -1,5 +1,4 @@
 let list = document.querySelector('ol');
-let taskStatus = document.getElementById('task-status');
 
 let token = localStorage.getItem('jwt');
 let url = 'http://localhost:2000/tasks/';
@@ -17,15 +16,11 @@ let removeTask = (item, index) => {
         },
         body: JSON.stringify(data)
     })
-    .then(res => res.json())
-    .then(data => {
-        taskStatus.innerText = data.message;
-    })
 
     item.remove();
 }
 
-onload = async () => {
+let getTasks = async () => {
     let apiData = await fetch(url, {
         method: 'GET',
         headers: {
@@ -33,18 +28,47 @@ onload = async () => {
             'jwt': token
         },
     }).then(res => res.json()); //response from server is User's tasks array
+    
+    list.innerHTML = '';
 
     apiData.forEach((element, index) => {
         let item = document.createElement('li');
         let button = document.createElement('button');
-
         button.innerText = '-';
         button.addEventListener('click', () => removeTask(item, index));
-
+        
         item.innerText = element;
         item.appendChild(button); 
 
         list.appendChild(item);
     })
+}
+
+onload = async () => await getTasks();
+
+let send = async () => {
+    let taskName = document.getElementById('taskName');
+    
+    let token = localStorage.getItem('jwt');
+
+    let data = {
+        tasks: taskName.value //value from the input
+    }
+
+    let url = 'http://localhost:2000/tasks';
+
+    await fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'jwt': token
+        },
+        body: JSON.stringify(data)
+    })
+    
+    //input field reset after invoking a function send()
+    taskName.value = '';
+
+    await getTasks();
 }
 

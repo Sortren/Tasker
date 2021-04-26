@@ -39,7 +39,6 @@ main {
     gap: 20px;
 }
 
-
 .row-bars{
     display: flex;
     flex-direction: row;
@@ -54,6 +53,16 @@ main {
     display: flex;
     flex-direction: column;
 
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.list button{
+    
 }
 
 .right-bar-container{
