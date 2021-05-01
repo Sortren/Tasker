@@ -1,74 +1,95 @@
-let list = document.querySelector('ol');
+let list = document.querySelector("ol");
+let token = localStorage.getItem("jwt");
+let url = "http://localhost:2000/tasks/";
 
-let token = localStorage.getItem('jwt');
-let url = 'http://localhost:2000/tasks/';
+let remove = async () => {
+  //DOMCheckboxes is NodeList by default, we have to convert it to array to use map/filter function
+  let DOMCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 
-let removeTask = (item, index) => {
-    let data = {
-        index: index
-    }
+  let checkboxes = Array.from(DOMCheckboxes);
 
-    fetch(url, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'jwt': token
-        },
-        body: JSON.stringify(data)
+  let indexes = checkboxes
+    .map((element, index) => {
+      if (element.checked) {
+        return index;
+      }
     })
+    .filter((element) => {
+      if (element == undefined) {
+        return false; // false -> item deleted from array
+      } else {
+        return true; // true -> item stays in array
+      }
+    });
 
-    item.remove();
-}
+  await removeTask(indexes);
+  await getTasks();
+};
+
+let removeTask = async (indexes) => {
+  let data = {
+    indexes: indexes,
+  };
+
+  await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      jwt: token,
+    },
+    body: JSON.stringify(data),
+  });
+};
 
 let getTasks = async () => {
-    let apiData = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'jwt': token
-        },
-    }).then(res => res.json()); //response from server is User's tasks array
-    
-    list.innerHTML = '';
+  let apiData = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      jwt: token,
+    },
+  }).then((res) => res.json()); //response from server is User's tasks array
 
-    apiData.forEach((element, index) => {
-        let item = document.createElement('li');
-        let button = document.createElement('button');
-        button.innerText = '-';
-        button.addEventListener('click', () => removeTask(item, index));
-        
-        item.innerText = element;
-        item.appendChild(button); 
+  list.innerHTML = "";
 
-        list.appendChild(item);
-    })
-}
+  apiData.forEach((element) => {
+    let item = document.createElement("li");
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
 
+    item.appendChild(checkbox);
+    item.innerHTML += element;
+
+    list.appendChild(item);
+  });
+};
+
+//Displaying tasks on page load
 onload = async () => await getTasks();
 
+//Sending a task to MongoDB
 let send = async () => {
-    let taskName = document.getElementById('taskName');
-    
-    let token = localStorage.getItem('jwt');
+  let taskName = document.getElementById("taskName");
 
-    let data = {
-        tasks: taskName.value //value from the input
-    }
+  let token = localStorage.getItem("jwt");
 
-    let url = 'http://localhost:2000/tasks';
+  let data = {
+    tasks: taskName.value, //value from the input
+  };
 
-    await fetch(url, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-            'jwt': token
-        },
-        body: JSON.stringify(data)
-    })
-    
-    //input field reset after invoking a function send()
-    taskName.value = '';
+  let url = "http://localhost:2000/tasks";
 
-    await getTasks();
-}
+  await fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      jwt: token,
+    },
+    body: JSON.stringify(data),
+  });
 
+  //input field reset after invoking a function send()
+  taskName.value = "";
+
+  await getTasks();
+};
