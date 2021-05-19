@@ -21,6 +21,10 @@ router.get("/:authToken", async (req, res) => {
     res.sendFile(
       path.join(__dirname, "../responseHTML/authorize/authorized.html")
     );
+  } else {
+    res.sendFile(
+      path.join(__dirname, "../responseHTML/authorize/notAuthorized.html")
+    );
   }
 });
 
